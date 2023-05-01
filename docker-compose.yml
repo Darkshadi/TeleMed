@@ -1,0 +1,15 @@
+services:
+  telemedserver:
+    image: darkshadi/telemedserverruntime:latest
+    environment:
+      - MONGODB_HOST=mongodb
+    working_dir: /app
+    command: ["java", "-jar", "telemed.jar", "mongodb", "false", "false"]
+    ports:
+      - "4567:4567"
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongo:4.4
+    container_name: mongodb
